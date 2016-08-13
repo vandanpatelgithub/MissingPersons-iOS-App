@@ -21,7 +21,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         Person(personImageURL: "person3.jpg"),
         Person(personImageURL: "person4.jpg"),
         Person(personImageURL: "person5.jpg"),
-        Person(personImageURL: "person6.png")
+        Person(personImageURL: "person6.png"),
+        Person(personImageURL: "preeti.jpg")
     ]
     
     override func viewDidLoad() {
@@ -72,11 +73,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     print(result.confidence)
                                     print(result.isIdentical)
                                     print(result.debugDescription)
+                                    let confidence = result.confidence as Double * 100.0
+                                    let rounded_confidence = Double(round(confidence*100)/100)
                                     
                                     if result.isIdentical {
-                                        self.showAlert("Match Found!", title: "Match Status")
+                                        self.showAlert("Match Found! \n Confidence Level : \(rounded_confidence)%", title: "Match Status")
                                     } else {
-                                        self.showAlert("Match NOT Found! \n Confidence Level : \(result.confidence)", title: "Match Status")
+                                        
+                                        self.showAlert("Match NOT Found! \n Confidence Level : \(rounded_confidence)%", title: "Match Status")
                                     }
                                 }
                                 else {
