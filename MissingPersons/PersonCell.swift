@@ -21,7 +21,6 @@ class PersonCell: UICollectionViewCell {
                 guard let data = data where error == nil else { return }
                 self.personImg.image = UIImage(data: data)
                 self.person.personImage = self.personImg.image
-                self.person.downloadFaceID()
             }
         }
     }
@@ -31,5 +30,12 @@ class PersonCell: UICollectionViewCell {
         NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
             completion(data: data, response: response, error: error)
         }.resume()
+    }
+    
+    func setSelected() {
+        personImg.layer.borderWidth = 2.0
+        personImg.layer.borderColor = UIColor.redColor().CGColor
+        
+        self.person.downloadFaceID()
     }
 }
