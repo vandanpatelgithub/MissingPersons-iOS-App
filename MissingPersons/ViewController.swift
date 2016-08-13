@@ -36,10 +36,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         selectedImage.addGestureRecognizer(tap)
     }
     
-    
-    func showErrorAlert() {
+    func showAlert(message: String, title: String) {
         
-        let alert  = UIAlertController(title: "Select Person & Image", message: "Please select a missing person to check and an image from your album to compare", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
         
@@ -51,7 +50,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBAction func checkMatch(sender: UIButton) {
         if selectedPerson == nil || !hasSelectedImage {
-            showErrorAlert()
+            showAlert("Please select a missing person to check and an image from your album to compare", title: "Select Person & Image")
         }
         else {
             if let myImage = selectedImage.image, let imageData = UIImageJPEGRepresentation(myImage, 0.8) {
@@ -71,6 +70,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     print(result.confidence)
                                     print(result.isIdentical)
                                     print(result.debugDescription)
+                                    
+                                    if result.isIdentical {
+                                        self.showAlert("Match Found!", title: "Match Status")
+                                    } else {
+                                        self.showAlert("Match NOT Found! \n Confidence Level : \(result.confidence)", title: "Match Status")
+                                    }
                                 }
                                 else {
                                     print(error.debugDescription)
