@@ -7,20 +7,26 @@ class PersonCell: UICollectionViewCell {
     
     var person: Person!
     
-    func configureCell(person: Person) {
+    func configureCell(person: Person, selected: Bool) {
         self.person = person
         
         if let url = NSURL(string: "\(baseURL)\(person.personImageURL!)") {
-            downloadImage(url)
+            downloadImage(url, selected: selected)
         }
     }
     
-    func downloadImage(url: NSURL) {
+    func downloadImage(url: NSURL, selected: Bool) {
         getDataFromURL(url) { (data, response, error) in
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 guard let data = data where error == nil else { return }
                 self.personImg.image = UIImage(data: data)
                 self.person.personImage = self.personImg.image
+                if !selected {
+                    self.markUnselected()
+                } else {
+                    self.markSelected()
+                }
+                
             }
         }
     }
@@ -29,13 +35,22 @@ class PersonCell: UICollectionViewCell {
         
         NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
             completion(data: data, response: response, error: error)
-        }.resume()
+            }.resume()
     }
     
     func setSelected() {
+        markSelected()
+        self.person.downloadFaceID()
+    }
+    
+    
+    func markSelected() {
         personImg.layer.borderWidth = 2.0
         personImg.layer.borderColor = UIColor.redColor().CGColor
-        
-        self.person.downloadFaceID()
+    }
+    
+    func markUnselected() {
+        self.personImg.layer.borderWidth = 2.0
+        self.personImg.layer.borderColor = UIColor.whiteColor().CGColor
     }
 }

@@ -34,6 +34,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.loadPicker(_:)))
         tap.numberOfTapsRequired = 1
         selectedImage.addGestureRecognizer(tap)
+        
+        self.collectionView.allowsMultipleSelection = false
     }
     
     func showAlert(message: String, title: String) {
@@ -97,6 +99,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         cell.setSelected()
         
+        cell.selected = true
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PersonCell
+        
+        cell.markUnselected()
+        
+        cell.selected = false
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -109,7 +122,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let person = missingPeople[indexPath.row]
         
-        cell.configureCell(person)
+        cell.configureCell(person, selected: cell.selected)
         
         return cell
     }
