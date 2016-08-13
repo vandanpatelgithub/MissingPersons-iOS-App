@@ -105,11 +105,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PersonCell
-        
-        cell.markUnselected()
-        
-        cell.selected = false
+        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? PersonCell {
+            
+            cell.markUnselected()
+            
+            cell.selected = false
+        }
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
