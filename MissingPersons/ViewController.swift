@@ -1,5 +1,8 @@
 
 import UIKit
+import ProjectOxfordFace
+
+    let baseURL = "http://localhost:6069/img/"
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -9,15 +12,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     let imagePicker =  UIImagePickerController()
     
-    let baseURL = "http://localhost:6069/img/"
-    
-    let missingPeople =  [
-        "person1.jpg",
-        "person2.jpg",
-        "person3.jpg",
-        "person4.jpg",
-        "person5.jpg",
-        "person6.png"
+    let missingPeople = [
+        Person(personImageURL: "person1.jpg"),
+        Person(personImageURL: "person2.jpg"),
+        Person(personImageURL: "person3.jpg"),
+        Person(personImageURL: "person4.jpg"),
+        Person(personImageURL: "person5.jpg"),
+        Person(personImageURL: "person6.png")
     ]
     
     override func viewDidLoad() {
@@ -36,6 +37,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func checkMatch(sender: UIButton) {
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return missingPeople.count
     }
@@ -44,8 +49,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let cell =  collectionView.dequeueReusableCellWithReuseIdentifier("PersonCell", forIndexPath: indexPath) as! PersonCell
         
-        let url = "\(baseURL)\(missingPeople[indexPath.row])"
-        cell.configureCell(url)
+        let person = missingPeople[indexPath.row]
+        
+        cell.configureCell(person)
+        
         return cell
     }
     
