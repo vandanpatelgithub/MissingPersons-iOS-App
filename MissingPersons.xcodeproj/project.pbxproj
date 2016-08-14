@@ -76,18 +76,50 @@
 		629200211D5E5ADF00F53841 /* MissingPersons */ = {
 			isa = PBXGroup;
 			children = (
+				629200431D61033E00F53841 /* Services */,
+				629200421D61032900F53841 /* Controller */,
+				629200411D61032400F53841 /* View */,
+				629200401D61031E00F53841 /* Model */,
 				629200221D5E5ADF00F53841 /* AppDelegate.swift */,
-				629200241D5E5ADF00F53841 /* ViewController.swift */,
-				629200361D5E6F1000F53841 /* PersonCell.swift */,
-				629200261D5E5ADF00F53841 /* Main.storyboard */,
 				629200291D5E5ADF00F53841 /* Assets.xcassets */,
-				6292002B1D5E5ADF00F53841 /* LaunchScreen.storyboard */,
 				6292002E1D5E5ADF00F53841 /* Info.plist */,
-				629200381D5EAFB200F53841 /* MissingPersons-Bridging-Header.h */,
-				6292003B1D5EB54600F53841 /* Person.swift */,
-				6292003D1D5EB6CA00F53841 /* FaceService.swift */,
 			);
 			path = MissingPersons;
+			sourceTree = "<group>";
+		};
+		629200401D61031E00F53841 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				629200381D5EAFB200F53841 /* MissingPersons-Bridging-Header.h */,
+				6292003B1D5EB54600F53841 /* Person.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		629200411D61032400F53841 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6292002B1D5E5ADF00F53841 /* LaunchScreen.storyboard */,
+				629200261D5E5ADF00F53841 /* Main.storyboard */,
+				629200361D5E6F1000F53841 /* PersonCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		629200421D61032900F53841 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				629200241D5E5ADF00F53841 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		629200431D61033E00F53841 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6292003D1D5EB6CA00F53841 /* FaceService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		BCF62FABC50A2339E6644DB8 /* Pods */ = {

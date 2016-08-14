@@ -70,9 +70,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             FaceService.instance.client.verifyWithFirstFaceId(self.selectedPerson!.faceID, faceId2: faceID, completionBlock: { (result:MPOVerifyResult!, error: NSError!) in
                                 
                                 if error == nil {
-                                    print(result.confidence)
-                                    print(result.isIdentical)
-                                    print(result.debugDescription)
                                     let confidence = result.confidence as Double * 100.0
                                     let rounded_confidence = Double(round(confidence*100)/100)
                                     

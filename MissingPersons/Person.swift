@@ -22,7 +22,6 @@ class Person {
                     
                     for face in faces {
                         faceID = face.faceId
-                        print("Face ID: \(faceID)")
                         break
                     }
                     

@@ -40,7 +40,10 @@ class PersonCell: UICollectionViewCell {
     
     func setSelected() {
         markSelected()
-        self.person.downloadFaceID()
+        
+        if self.person.faceID == nil {
+            self.person.downloadFaceID()
+        }
     }
     
     
